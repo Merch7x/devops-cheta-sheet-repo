@@ -1,0 +1,30 @@
+- name: unarchive file from all app servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: unarchiving to server 1
+      ansible.builtin.unarchive:
+        src: /usr/src/itadmin/devops.zip
+        dest: /opt/itadmin/
+        owner: tony
+        group: tony
+        mode: "0655"
+      when: inventory_hostname == "stapp01"
+
+    - name: unarchiving to server 1
+      ansible.builtin.unarchive:
+        src: /usr/src/itadmin/devops.zip
+        dest: /opt/itadmin/
+        owner: steve
+        group: steve
+        mode: "0655"
+      when: inventory_hostname == "stapp02"
+
+    - name: unarchiving to server 1
+      ansible.builtin.unarchive:
+        src: /usr/src/itadmin/devops.zip
+        dest: /opt/itadmin/
+        owner: banner
+        group: banner
+        mode: "0655"
+      when: inventory_hostname == "stapp03"
