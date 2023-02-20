@@ -1,0 +1,35 @@
+
+# this playbook copy files from the localhost to the defined inventory 
+# using the when conditional
+
+
+- name: Copying files to Appservers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy blog.txt to App server 1
+      ansible.builtin.copy:
+        src: usr/src/security/blog.txt
+        dest: opt/security/
+        owner: tony
+        group: tony
+        mode: "0755"
+      when: inventory_hostname == "stapp01"
+    - name: copy story.txt to App server 2
+        ansible.builtin.copy:
+        src: usr/src/security/story.txt
+        dest: opt/security/
+        owner: steve
+        group: steve
+        mode: "0755"
+      when: inventory_hostname == "stapp02"
+    - name: copy media.txt to App server 3
+        ansible.builtin.copy:
+        src: usr/src/security/media.txt
+        dest: opt/security/
+        owner: banner
+        group: banner
+        mode: "0755"
+      when: inventory_hostname == "stapp03"
+
+
