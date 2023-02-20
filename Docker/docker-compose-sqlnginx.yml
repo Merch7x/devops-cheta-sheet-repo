@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    container_name: nginx-webserver
+    image: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+  db:
+    container_name: mysql-db
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+    networks:
+      - my_network
+networks:
+  my_network:
