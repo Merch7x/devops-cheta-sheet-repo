@@ -5,30 +5,30 @@ metadata:
   namespace: datacenter
 spec:
   selector:
-    app: MYAPP
+    app: apache-app
   type: NodePort
   sessionAffinity: None
   sessionAffinityConfig:
     clientIP:
       timeoutSeconds: 10800
   ports:
-  - name: MYAPP
-    protocol: TCP
-    port: 80
-    targetPort: 80
-    nodePort: 30008
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30008
 
-apiversion: apps/v1
+
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: httpd-deploy
   namespace: datacenter
   labels:
-    app:  MYAPP
+    app: apache-app
 spec:
   selector:
     matchLabels:
-      app: MYAPP
+      app: apache-app
   replicas: 4
   strategy:
     rollingUpdate:
@@ -38,35 +38,11 @@ spec:
   template:
     metadata:
       labels:
-        app:  MYAPP
+        app: apache-app
     spec:
       containers:
-      - name:  MYAPP
+      - name: apache
         image: httpd:2.4.28
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
-        livenessProbe:
-          tcpSocket:
-            port: 80
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 80
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
         ports:
-        - containerPort:  80
-          name:  MYAPP
+        - containerPort: 8080
+          name: httpd 
