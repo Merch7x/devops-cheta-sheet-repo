@@ -47,7 +47,7 @@ kind: Deployment
 metadata:
   name: mysql-deployment
   labels:
-  app: mysql-app
+    app: mysql-app
 spec:
   selector:
     matchlabels:
