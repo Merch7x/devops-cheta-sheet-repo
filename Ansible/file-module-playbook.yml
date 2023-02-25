@@ -1,0 +1,9 @@
+- name: use file module
+  hosts: all
+  become: yes
+  tasks:
+    - name: Creating new file
+      ansible.builtin.file:
+        path: /tmp/file.txt
+        state: touch
+      when: inventory_hostname == "stapp02"
