@@ -9,3 +9,6 @@ kubectl edit resource/<resource-name>
 
 #To change namespace
 kubectl config set-context --current --namespace=<namespace>
+
+#To copy files from local to prod
+kubectl cp /tmp/index.php nginx-phpfpm-dp-5cccd45499-lghgl:/var/www/html/
