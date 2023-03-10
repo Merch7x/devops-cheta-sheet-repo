@@ -3,7 +3,7 @@ class ssh_node1 {
     ensure => present,
     user   => 'tony',
     type   => 'ssh-rsa',
-    key    => "$public_key",
+    key    => $public_key,
 
   }
 }
@@ -13,7 +13,7 @@ class ssh_node2 {
     ensure => present,
     user   => 'steve',
     type   => 'ssh-rsa',
-    key    => "$public_key",
+    key    => $public_key,
 
   }
 }
@@ -23,7 +23,7 @@ class ssh_node3 {
     ensure => present,
     user   => 'banner',
     type   => 'ssh-rsa',
-    key    => "$public_key",
+    key    => $public_key,
 
   }
 }
