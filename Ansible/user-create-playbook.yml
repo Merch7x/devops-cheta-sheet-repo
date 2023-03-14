@@ -17,7 +17,7 @@
       ansible.builtin.user:
         name: "{{ item ['name'] }}"
         password: "{{ user_password | password_hash('sha512')  }}"   
-        groups: "dev"
+        groups: "developers"
         append: yes
       loop: "{{ users }}"
       when: "item['job'] == 'developers'"
