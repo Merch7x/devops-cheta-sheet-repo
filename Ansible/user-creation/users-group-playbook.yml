@@ -1,0 +1,38 @@
+- name: Creating Groups and users
+  hosts:
+  become: yes
+  tasks:
+    - name: Creating Groups
+      group:
+        name: "{{ item }}"
+      loop:
+        - admins
+        - developers
+      state: present
+
+    - name: Creating Admin Group users
+      user:
+        name: "{{ item }}"
+        password: "{{ 'BruCStnMT5' | password_hash ('sha512') }}" 
+        groups:
+          - admins
+          - wheel
+        state: present
+      loop:
+        - rob
+        - david
+        - joy
+        
+    - name: Creating Developers Group users
+      user:
+        name: "{{ item }}"
+        password: "{{ 'dCV3szSGNA' | password_hash ('sha512') }}" 
+        home: "/var/www/{{ item }}"
+        groups:
+          - developers
+        state: present
+      loop:
+        - tim
+        - ray
+        - jim
+        - mark

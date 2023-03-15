@@ -16,7 +16,7 @@
     - name: Creating users
       ansible.builtin.user:
         name: "{{ item ['name'] }}"
-        password: "{{ user_password | password_hash('sha512')  }}"   
+        password: "{{ user_password }}"   
         groups: "developers"
         append: yes
       loop: "{{ users }}"
@@ -25,7 +25,7 @@
     - name: Creating users
       ansible.builtin.user:
         name: "{{ item ['name'] }}"
-        password: "{{ user_password | password_hash('sha512')  }}"    
+        password: "{{ user_password }}"    
         groups: "admins"
         append: yes
       loop: "{{ users }}"
