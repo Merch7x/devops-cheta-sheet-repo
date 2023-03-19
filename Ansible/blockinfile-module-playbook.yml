@@ -1,0 +1,26 @@
+- name: task one
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+
+    - name: Add content to index.html
+      ansible.builtin.blockinfile:
+        create: true
+        path: /var/www/html/index.html
+        block: |
+          Welcome to XfusionCorp! 
+          This is Nautilus sample file, created using Ansible! 
+          Please do not modify this file manually!
+        owner: apache
+        group: apache
+        mode: '0755'
+          
