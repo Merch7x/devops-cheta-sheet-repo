@@ -4,16 +4,16 @@ metadata:
   name: nginx-phpfpm
   namespace: default
   labels:
-    app: "MYAPP"
+    app: MYAPP
 spec:
   containers:
   - name: nginx-container
     image: nginx:latest
     ports:
-    - containerPort:  80
+    - containerPort: 8080
     volumeMounts:
     - name: nginx-config-volume
-      mountPath: /etc/nginx/nginx.conf
+      mountPath: /etc/nginx/
       subPath: nginx.conf
     - name: shared-files
       mountPath: /var/www/html
@@ -31,3 +31,6 @@ spec:
     - name: nginx-config-volume
       configMap:
         name: nginx-config
+        items:
+          - key: "nginx-conf"
+            path: "nginx-conf"
