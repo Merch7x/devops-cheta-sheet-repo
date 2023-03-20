@@ -13,7 +13,7 @@ spec:
     - containerPort: 8080
     volumeMounts:
     - name: nginx-config-volume
-      mountPath: /etc/nginx/
+      mountPath: /etc/nginx/nginx.conf
       subPath: nginx.conf
     - name: shared-files
       mountPath: /var/www/html
@@ -27,10 +27,8 @@ spec:
       mountPath: /var/www/html
   volumes:
     - name: shared-files
-      emptyDir:
+      emptyDir: {}
     - name: nginx-config-volume
       configMap:
         name: nginx-config
-        items:
-          - key: "nginx-conf"
-            path: "nginx-conf"
+

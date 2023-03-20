@@ -8,7 +8,7 @@ data:
     events {} 
     http {
       server {
-        listen 8092;
+        listen 8097;
         index index.html index.htm index.php;
         root  /var/www/html;
         location ~ \.php$ {
