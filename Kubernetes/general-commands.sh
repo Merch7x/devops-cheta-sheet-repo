@@ -11,4 +11,4 @@ kubectl edit resource/<resource-name>
 kubectl config set-context --current --namespace=<namespace>
 
 #To copy files from local to prod
-kubectl cp /tmp/index.php nginx-phpfpm-dp-5cccd45499-lghgl:/var/www/html/
+kubectl cp /<path-to-your-file>/<file-name> <pod-name>:<folder>/<file-name> -c <container-name>
