@@ -8,6 +8,7 @@ kubectl describe resource/<resource-name>
 kubectl edit resource/<resource-name>
 
 #To change namespace
+# Altetrnatively install kubens
 kubectl config set-context --current --namespace=<namespace>
 
 #To copy files from local to prod
