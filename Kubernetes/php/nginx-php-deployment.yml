@@ -9,8 +9,6 @@ spec:
   containers:
   - name: nginx-container
     image: nginx:latest
-    ports:
-    - containerPort: 8080
     volumeMounts:
     - name: nginx-config-volume
       mountPath: /etc/nginx/nginx.conf
@@ -20,8 +18,7 @@ spec:
 
   - name: php-fpm-container
     image: php:7.1-fpm
-    ports:
-    - containerPort: 9000
+
     volumeMounts:
     - name: shared-files
       mountPath: /var/www/html
