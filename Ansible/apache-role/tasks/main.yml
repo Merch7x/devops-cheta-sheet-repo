@@ -1,0 +1,8 @@
+- name: Copy jinja2 template
+  template:
+    src: /home/thor/ansible/role/httpd/templates/index.html.j2
+    dest: /var/www/html/index.html
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  

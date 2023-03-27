@@ -1,0 +1,33 @@
+- name: create users and groups
+  hosts:
+  become: yes
+  vars_files:
+    - secrets.yml
+    - users.yml
+
+  tasks:
+    - name: creating groups
+      group:
+        name: " {{ item }}"
+      loop:
+          - "admins"
+          - "developers"
+
+    - name: Creating users
+      ansible.builtin.user:
+        name: "{{ item ['name'] }}"
+        password: "{{ user_password }}"   
+        groups: "developers"
+        append: yes
+      loop: "{{ users }}"
+      when: "item['job'] == 'developers'"
+
+    - name: Creating users
+      ansible.builtin.user:
+        name: "{{ item ['name'] }}"
+        password: "{{ user_password }}"    
+        groups: "admins"
+        append: yes
+      loop: "{{ users }}"
+      when: "item['job'] == 'admins'"  
+        
