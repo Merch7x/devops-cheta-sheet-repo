@@ -1,0 +1,26 @@
+- name: Reolacing string with replace module
+  hosts: all
+  become: yes
+  tasks:
+    - name: replacing string for stapp01
+      ansible.builtin.replace:
+        path: /opt/security/blog.txt
+        regexp: "xFusionCorp"
+        replace: "Nautilus"
+      when: inventory_hostname == "stapp01"
+
+    - name: replacing string for stapp02
+      ansible.builtin.replace:
+        path: /opt/security/story.txt
+        regexp: "Nautilus"
+        replace: "KodeKloud"
+      when: inventory_hostname == "stapp02"
+
+    - name: replacing string for stapp03
+      ansible.builtin.replace:
+        path: /opt/security/media.txt
+        regexp: "KodeKloud"
+        replace: "xFusionCorp Industries"
+      when: inventory_hostname == "stapp03"
+
+  
