@@ -1,0 +1,35 @@
+- name: Install Apache and Php
+  hosts: all
+  become: yes
+  tasks:
+    - name: Httpd and Php Install
+      yum:
+        name:
+          - httpd
+          - php
+        state: present
+
+    - name: create document Root
+      ansible.builtin.file:
+        path: /var/www/html/myroot
+        state: directory
+    
+    - name: Change Apache Document Root
+      ansible.builtin.lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot '
+        insertafter: '#DocumentRoot '
+        line: DocumentRoot "/var/www/html/myroot"
+
+    - name: Template jinja file to document Root
+      ansible.builtin.copy:
+        src: /home/thor/playbooks/templates/phpinfo.php.j2
+        dest: /var/www/html/myroot/phpinfo.php
+        owner: apache
+        group: apache
+
+    - name: Start Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
