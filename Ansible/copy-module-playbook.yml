@@ -1,0 +1,9 @@
+- name: Ansible copy Module
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copy file to all servers
+      ansible.builtin.copy:
+        src: /usr/src/data/index.html
+        dest: /opt/data
+
