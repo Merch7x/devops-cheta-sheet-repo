@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  ic-deploy-datacenter
+  namespace: default
+  labels:
+    app: ic-datacenter
+spec:
+  selector:
+    matchLabels:
+      app: ic-datacenter
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: ic-datacenter
+    spec:
+      initContainers:
+      - name: ic-msg-datacenter
+        image: ubuntu:latest
+        command: ['/bin/bash', '-c', 'echo Init Done - Welcome to xFusionCorp Industries > /ic/news' ]
+        volumeMounts:
+          - name: ic-volume-datacenter
+            mountPath: /ic
+      containers:
+      - name: ic-main-datacenter
+        image: ubuntu:latest
+        command: ['/bin/bash', '-c', 'while true; do cat /ic/news; sleep 5; done' ]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: ic-volume-datacenter
+          mountPath: /ic
+      volumes:
+        - name: ic-volume-datacenter
+          emptyDir: {}
