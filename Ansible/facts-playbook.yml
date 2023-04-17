@@ -1,0 +1,25 @@
+- name: Playbook to gather facts
+  hosts: all
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: Add facts gathering to created file
+      ansible.builtin.blockinfile:
+        create: true
+        path: /root/facts.txt
+        block: |
+          Ansible managed node IP is {{ ansible_default_ipv4.address }}
+
+    - name: install Apache
+      ansible.builtin.package:
+        name: httpd
+        state: present
+
+    - name: create default document root
+      shell: cp /root/facts.txt /var/www/html/index.html
+
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
