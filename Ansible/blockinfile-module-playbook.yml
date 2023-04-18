@@ -1,6 +1,6 @@
 - name: task one
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install apache
       yum:

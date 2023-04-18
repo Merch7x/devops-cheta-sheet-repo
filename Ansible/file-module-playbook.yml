@@ -1,6 +1,6 @@
 - name: use file module
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Creating new file
       ansible.builtin.file:
