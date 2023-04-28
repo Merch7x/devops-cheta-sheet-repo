@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1 
+kind: Role 
+metadata:
+  name: developer
+  namespace: default
+rules:
+- apiGroups: [""]
+  resources: ["pods", "deployments", "statefulsets"]
+  verbs: ["get", "list"]
+  resourceNames: ["myapp"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: peter-developer-binding
+subjects:
+- kind: user
+  name: peter 
+  apiGroup: rbac.authorization.k8s.io
+- kind: Group 
+  name: "devops-admin"
+  apiGroup: rbac.authorization.k8s.io
+- kind: SericeAccount
+  name: default
+roleRef:
+  kind: Role 
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
