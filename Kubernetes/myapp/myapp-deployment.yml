@@ -20,8 +20,12 @@ spec:
       labels:
         app: my-app
     spec:
+    #refernces screts to be used when pulling an image froma private repository if not already configured. 
+      # imagePullSecrets:
+      #   - 
       containers:
       - name: simple-nodejs-container
+      #Declares the pull action of an image
         imagePullPolicy: Always
         image: merch7x/dev-repo:myapp-v1 
         resources:
