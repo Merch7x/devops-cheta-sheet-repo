@@ -12,4 +12,11 @@ kubectl edit resource/<resource-name>
 kubectl config set-context --current --namespace=<namespace>
 
 #To copy files from local to prod
-kubectl cp /<path-to-your-file>/<file-name> <pod-name>:<folder>/<file-name> -c <container-name>
+kubectl cp /<path-to-your-file>/<file-name> <pod-name>:<folder>/<file-name> -c <container-name> 
+
+# Roles
+kubectl get roles
+kubectl describe roles
+
+# check api access and or permissions
+kubectl auth can-i
