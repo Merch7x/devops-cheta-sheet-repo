@@ -4,7 +4,7 @@ metadata:
   name: datacenter
   namespace: default
 spec:
-  schedule: "*/8 * * * *"
+  schedule: "*/6 * * * *"
   jobTemplate:
     spec:
       template:
@@ -12,5 +12,5 @@ spec:
           containers:
           - name: cron-datacenter
             image: httpd:latest
-            args: [echo 'Welcome to Xfusioncorp!']
+            args: [echo Welcome to Xfusioncorp!]
           restartPolicy: OnFailure
