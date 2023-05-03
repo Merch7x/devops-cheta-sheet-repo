@@ -22,4 +22,5 @@
 `kubectl auth can-i`
 
 # Enable automatic sidecar injection of istio proxy in a particular namespace
-`istio-injection=enable` #configures webhooks to chamge any deployments in the namespace to include istio sidecars
+`kubectl namespace default istio-injection=enable` 
+#configures webhooks to change any deployments in the namespace to include istio sidecars
