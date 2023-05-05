@@ -4,14 +4,14 @@ metadata:
   name: pv-devops
 spec:
   capacity:
-    storage: 5Gi
+    storage: 4Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: manual
-  hostPath:
-    path: /mnt/itadmin
+  hostPath: 
+    path: /mnt/dba
 
 ---
 apiVersion: v1 
