@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: ReplicaSet
+apiVersion: v1
+kind: ReplicationController
 metadata:
   name: nginx-replicationcontroller
   labels:
@@ -8,9 +8,7 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: nginx_app
-      type: front-end
+    app: nginx_app
   template:
     metadata:
       labels:
