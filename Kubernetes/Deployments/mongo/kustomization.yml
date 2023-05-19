@@ -1,0 +1,5 @@
+resources:
+  - mongo-configmap
+  - mongo-deployment
+  - mongo-express-deployment
+  - mongo-secrets
