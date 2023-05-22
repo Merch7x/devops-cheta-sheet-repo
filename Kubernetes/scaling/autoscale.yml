@@ -1,0 +1,38 @@
+# Horizontal Scaling
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata: 
+    name: <deployment-name>
+spec:
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: <deployment-name>
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 50
+--- 
+# Vertical Scaling
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: <deployment-name>
+    labels:
+        app: <app-name>
+spec:
+    repliacs: 1
+    template:
+        metadata:
+            labels:
+                app: <app-name>
+        spec:
+            containers:
+            - name: <image-name>
+                image: <image-to-pull>
+                resources:
+                    requests:
+                        memory: "1024Mi"
+                        cpu: "500m"
+                    limits:
+                        memory: "2048Mi"
+                        cpu: "1000m"
