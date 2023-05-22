@@ -1,0 +1,4 @@
+resources:
+  - php-redis-frontend-deployment.yml
+  - redis-master-deployment.yml
+  - redis-slave-deployment.yml
