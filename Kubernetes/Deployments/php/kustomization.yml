@@ -1,0 +1,4 @@
+resources:
+  - nginx-config.yml
+  - nginx-php-deployment.yml
+  - php-service.yml
