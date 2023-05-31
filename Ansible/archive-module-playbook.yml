@@ -1,0 +1,31 @@
+- name: archive module
+  hosts: all
+  become: true
+  tasks:
+    - name: archive appserver 1
+      archive:
+        path: /usr/src/security/
+        dest: /opt/security/demo.tar.gz
+        format: gz
+        force_archive: true
+        owner: tony
+        group: tony
+      when: inventory_hostname == "stapp01"
+    - name: archive appserver 2
+      archive:
+        path: /usr/src/security/
+        dest: /opt/security/demo.tar.gz
+        format: gz
+        force_archive: true
+        owner: steve
+        group: steve
+      when: inventory_hostname == "stapp02"
+    - name: archive appserver 3
+      archive:
+        path: /usr/src/security/
+        dest: /opt/security/demo.tar.gz
+        format: gz
+        force_archive: true
+        owner: banner
+        group: banner
+      when: inventory_hostname == "stapp03"
