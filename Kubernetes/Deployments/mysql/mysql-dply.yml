@@ -14,8 +14,8 @@ metadata:
   namespace: default
 type: Opaque
 data:
-  username: a29kZWtsb3VkX2dlbQo=
-  password: WWNoWkhSY0xrTAo=
+  username: a29kZWtsb3VkX3NhbQo=
+  password: R3lRa0ZSVk5yMwo=
   
 ---
 apiVersion: v1 
@@ -25,7 +25,7 @@ metadata:
   namespace: default
 type: Opaque
 data:
-  database: a29kZWtsb3VkX2RiNAo=
+  database: a29kZWtsb3VkX2RiOQo=
 
 ---
 apiVersion: v1 
@@ -35,11 +35,11 @@ metadata:
 spec:
   capacity:
     storage: 250Mi 
-  volumeMode: Filesystem
+  # volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: mysql 
+  # persistentVolumeReclaimPolicy: Recycle
+  # storageClassName: mysql 
   hostPath:
     path: "/var/lib/mysql"
 
@@ -52,7 +52,7 @@ metadata:
   labels:
     app: MYAPP
 spec:
-  storageClassName: mysql 
+  # storageClassName: mysql 
   accessModes:
   - ReadWriteOnce
   resources:
